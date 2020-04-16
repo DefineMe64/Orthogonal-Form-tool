@@ -1,0 +1,14 @@
+C:\Users\yescco\source\repos\TCG\bin\Debug\TCG.exe.config
+C:\Users\yescco\source\repos\TCG\bin\Debug\TCG.exe
+C:\Users\yescco\source\repos\TCG\bin\Debug\TCG.pdb
+C:\Users\yescco\source\repos\TCG\obj\Debug\TCG.csprojAssemblyReference.cache
+C:\Users\yescco\source\repos\TCG\obj\Debug\MainWindow.g.cs
+C:\Users\yescco\source\repos\TCG\obj\Debug\App.g.cs
+C:\Users\yescco\source\repos\TCG\obj\Debug\TCG_MarkupCompile.cache
+C:\Users\yescco\source\repos\TCG\obj\Debug\TCG_MarkupCompile.lref
+C:\Users\yescco\source\repos\TCG\obj\Debug\MainWindow.baml
+C:\Users\yescco\source\repos\TCG\obj\Debug\TCG.g.resources
+C:\Users\yescco\source\repos\TCG\obj\Debug\TCG.Properties.Resources.resources
+C:\Users\yescco\source\repos\TCG\obj\Debug\TCG.csproj.GenerateResource.cache
+C:\Users\yescco\source\repos\TCG\obj\Debug\TCG.exe
+C:\Users\yescco\source\repos\TCG\obj\Debug\TCG.pdb

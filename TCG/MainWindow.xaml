@@ -1,0 +1,40 @@
+﻿<Window x:Class="TCG.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TCG"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="459*"/>
+            <ColumnDefinition Width="334*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Name="input" HorizontalAlignment="Left" Height="135" Margin="10,10,0,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" Width="622" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto" Grid.ColumnSpan="2">
+            <TextBox.Resources>
+                <VisualBrush x:Key="HintText" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
+                    <VisualBrush.Visual>
+                        <TextBlock FontStyle="Italic" Text="[因素]:[水平1],[水平2]...[水平n] (回车换行,写下个因素,注意尽量用英文标点符号)"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </TextBox.Resources>
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource HintText}"/>
+                        </Trigger>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="Background" Value="{StaticResource HintText}"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <Button x:Name="submit" Content="生成测试用例" HorizontalAlignment="Left" Margin="177.8,10,0,0" VerticalAlignment="Top" Width="147" Click="submit_click" Height="42" Grid.Column="1"/>
+        <Button x:Name="exit" Content="退出" HorizontalAlignment="Left" Margin="177.8,103,0,0" VerticalAlignment="Top" Width="147" Height="42" Click="exit_click" Grid.Column="1"/>
+        <TextBox x:Name="result" HorizontalAlignment="Left" Height="250" Margin="10,160,0,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" Width="774" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" IsReadOnly="True" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Window>
