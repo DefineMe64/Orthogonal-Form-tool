@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace TCG
 {
@@ -33,77 +34,82 @@ namespace TCG
         /// </summary>
         /// <param name="_query"></param>
         /// <param name="_factor"></param>
-        private void getTable(string _query, List<List<string>> _factor)
+        private async Task<string> getTable(string _query, List<List<string>> _factor)
         {
-            /**
+            string result = "";
+            await Task.Run(()=> {
+                /**
              * 根据_query查找对应正交表
              */
-            #region
-            string[] table = File.ReadAllLines("../../ts723_Designs.txt");
-            int hitIndex = 0;
-            try
-            {
-                foreach (string temp in table)
+                #region
+                string[] table = File.ReadAllLines("../../ts723_Designs.txt");
+                int hitIndex = 0;
+                try
                 {
+                    foreach (string temp in table)
+                    {
+                        hitIndex++;
+                        if (_query == temp)
+                        {
+                            throw new Exception();
+                        }
+                    }
+                }
+                catch (Exception e) { }
+                // 没有对应正交表，寻找相近正交表
+                if (hitIndex == table.Length)
+                {
+
+                    MessageBox.Show("没有对应正交表");
+                    return;
+                }
+                #endregion
+                /**
+                 * 根据正交表，生成测试用例
+                 */
+                #region
+                int i = _factor.Count - 1;
+                int oneFactorSum = 0;
+                int oneFactorNum = 0;
+                hitIndex += 2;
+                string line = table[hitIndex];
+                while (line != "#")
+                {
+                    if (i == -1)
+                        i = _factor.Count - 1;
+                    string text = "";
+                    for (int j = line.Length - 1; j >= 0; j--)
+                    {
+                        oneFactorSum = _factor[i].Count - 1;
+                        if (oneFactorSum > 11 && j - 1 >= 0)
+                        {
+                            oneFactorNum = Convert.ToInt32(line[j - 1].ToString() + line[j].ToString()) + 1;
+                            j--;
+                        }
+                        else
+                        {
+                            oneFactorNum = Convert.ToInt32(line[j].ToString()) + 1;
+                        }
+                        text = "\t" + text;
+                        text = (_factor[i])[oneFactorNum] + text;
+                        oneFactorNum = 0;
+                        i--;
+                    }
+                    result = result + text + "\r\n";
                     hitIndex++;
-                    if (_query == temp)
-                    {
-                        throw new Exception();
-                    }
+                    line = table[hitIndex];
                 }
-            }
-            catch (Exception e) { }
-            // 没有对应正交表，寻找相近正交表
-            if (hitIndex == table.Length)
-            {
-                
-                MessageBox.Show("没有对应正交表");
-                return;
-            }
-            #endregion
-            /**
-             * 根据正交表，生成测试用例
-             */
-            #region
-            int i = _factor.Count - 1;
-            int oneFactorSum = 0;
-            int oneFactorNum = 0;
-            hitIndex += 2;
-            string line = table[hitIndex];
-            while (line != "#")
-            {
-                if (i == -1)
-                    i = _factor.Count - 1;
-                string text = "";
-                for (int j = line.Length - 1; j >= 0; j--)
-                {
-                    oneFactorSum = _factor[i].Count - 1;
-                    if (oneFactorSum > 11 && j - 1 >= 0)
-                    {
-                        oneFactorNum = Convert.ToInt32(line[j - 1].ToString() + line[j].ToString()) + 1;
-                        j--;
-                    }
-                    else
-                    {
-                        oneFactorNum = Convert.ToInt32(line[j].ToString()) + 1;
-                    }
-                    text = "\t" + text;
-                    text = (_factor[i])[oneFactorNum] + text;
-                    oneFactorNum = 0;
-                    i--;
-                }
-                result.Text = result.Text + text + "\r\n";
-                hitIndex++;
-                line = table[hitIndex];
-            }
-            #endregion
+                #endregion
+            });
+            return result;
+            
         }
         /// <summary>
         /// 程序测试用例生成功能入口
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void submit_click(object sender, RoutedEventArgs e)
+        private async void submit_click(object sender, RoutedEventArgs e)
         {
             result.Text = ""; //刷新结果文本框
             /**
@@ -164,7 +170,8 @@ namespace TCG
             }
             #endregion
 
-            getTable(query, factor);//生成测试用例
+            var resultTemp= await getTable(query, factor);//生成测试用例
+            result.Text = resultTemp;
         }
         private void exit_click(object sender, RoutedEventArgs e)
         {
