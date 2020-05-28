@@ -64,7 +64,7 @@ m:m0,m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11
 
 
 
-![输入](https://s1.ax1x.com/2020/05/08/YnoWDJ.png)
+![输入](https://github.com/yescco126/Orthogonal-Form-tool/raw/master/images/input.png)
 
 第二步，点击生成按钮，生成测试用例
 
