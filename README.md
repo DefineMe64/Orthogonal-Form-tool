@@ -68,7 +68,7 @@ m:m0,m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11
 
 第二步，点击生成按钮，生成测试用例
 
-![结果](https://s1.ax1x.com/2020/05/08/YnTTds.png)
+![结果](https://github.com/yescco126/Orthogonal-Form-tool/raw/master/images/result.png)
 
 ## 没有对应正交表情况处理
 
@@ -82,7 +82,7 @@ m:m0,m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11
 
 提示出现
 
-![提示](https://s1.ax1x.com/2020/05/08/YnHKuF.png)
+![提示](https://github.com/yescco126/Orthogonal-Form-tool/raw/master/images/tip.png)
 
 此时可用正交表的因子数或水平数大于输入的因子数或水平数的正交表，例如
 
@@ -95,7 +95,7 @@ m:m0,m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11
 
 此时结果为
 
-![修改后](https://s1.ax1x.com/2020/05/08/YnHfbQ.png)
+![修改后](https://github.com/yescco126/Orthogonal-Form-tool/raw/master/images/after.png)
 
 # 维护者
 
